@@ -1,0 +1,70 @@
+{
+  "zadig": {
+    "2022-01": [
+      {
+        "day": 1,
+        "amends": [
+          {
+            "fee": 30,
+            "reason": "RAN"
+          }
+        ]
+      },
+      {
+        "day": 3,
+        "amends": [
+          {
+            "fee": 30,
+            "reason": "VET"
+          }
+        ]
+      }
+    ]
+  },
+  "swann": {
+    "2022-01": [
+      {
+        "day": 2,
+        "amends": [
+          {
+            "fee": 30,
+            "reason": "RAN"
+          }
+        ]
+      },
+      {
+        "day": 4,
+        "amends": [
+          {
+            "fee": 30,
+            "reason": "VET"
+          }
+        ]
+      }
+    ]
+  },
+  "referentials": {
+    "reasons": [
+      {
+        "type": "RAN",
+        "label": "Rangement",
+        "value": 30
+      },
+      {
+        "type": "VET",
+        "label": "Vêtement",
+        "value": 30
+      },
+      {
+        "type": "CUI",
+        "label": "Cuisine",
+        "value": 40
+      },
+      {
+        "type": "CHA",
+        "label": "Chambre",
+        "value": 300
+      }
+    ]
+  }
+}
