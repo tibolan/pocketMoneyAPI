@@ -7,8 +7,7 @@ router.get('/', function (req, res, next) {
     res.json(PocketMoney);
 });
 router.get('/referentials', async function (req, res, next) {
-    let reasons = await Mongo.ReadAll('reasons', null)
-    console.log(reasons)
+    let reasons = await Mongo.ReadAll('amendsType', null)
     res.json(reasons.documents);
 });
 
