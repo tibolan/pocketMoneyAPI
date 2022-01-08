@@ -13,7 +13,7 @@ router.get('/referentials', async function (req, res, next) {
 
 router.get('/check/:code', async function (req, res, next) {
     res.json({
-        status: req.params.code === '1234'
+        status: req.params.code === '2027'
     });
 });
 
