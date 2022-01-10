@@ -45,19 +45,24 @@ let Mongo = (function () {
         async Read (collection, filter) {
             return await fetch(collection, 'findOne', {filter})
         },
-        ReadAll (collection, filter) {
-            return fetch(collection, 'find', filter)
+        async ReadAll (collection, filter) {
+            return await fetch(collection, 'find', filter)
         },
-        Update () {
-
+        async Update (collection, id, set) {
+            return await fetch(collection, 'updateOne', {
+                filter: { "_id": { "$oid": id } },
+                update: {
+                    $set: set
+                }
+            }, set)
         },
-        Delete (collection, id) {
-            return fetch(collection, 'deleteOne', {
-                "filter": { "_id": { "$oid": id } }
+        async Delete (collection, id) {
+            return await fetch(collection, 'deleteOne', {
+                "filter": {"_id": {"$oid": id}}
             })
         },
-        Aggregate (collection, pipeline) {
-            return fetch(collection, 'aggregate', {pipeline})
+        async Aggregate (collection, pipeline) {
+            return await fetch(collection, 'aggregate', {pipeline})
         }
     }
 })()

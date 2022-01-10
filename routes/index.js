@@ -7,8 +7,13 @@ router.get('/', function (req, res, next) {
     res.json(PocketMoney);
 });
 router.get('/referentials', async function (req, res, next) {
-    let reasons = await Mongo.ReadAll('amendsType', null)
-    res.json(reasons.documents);
+    let amends = await Mongo.ReadAll('amendsType', null)
+    let deposits = await Mongo.ReadAll('depositsType', null)
+    let referentials = {
+        amends: amends.documents,
+        deposits: deposits.documents
+    }
+    res.json(referentials);
 });
 
 router.get('/check/:code', async function (req, res, next) {
@@ -21,6 +26,11 @@ router.post('/fee/:user', async function (req, res, next) {
     let user = await Mongo.Create('amends',
         Object.assign({name: req.params.user}, req.body)
     )
+    res.json(user);
+});
+router.put('/fee/:user/:id', async function (req, res, next) {
+    console.log(req.body)
+    let user = await Mongo.Update('amends', req.params.id, Object.assign({name: req.params.user}, req.body))
     res.json(user);
 });
 router.delete('/fee/:id', async function (req, res, next) {
@@ -36,6 +46,32 @@ router.get('/user/:user', async function (req, res, next) {
     )
     console.log(user)
     res.json(user.document);
+});
+router.get('/deposit/:user/by', async function (req, res, next) {
+    let user = await Mongo.Read('deposits',
+        Object.assign({
+            name: req.params.user
+        }, req.body)
+    )
+    res.json(user.document);
+});
+router.get('/deposit/:user', async function (req, res, next) {
+    let user = await Mongo.Read('deposits',
+        {
+            name: req.params.user
+        }
+    )
+    res.json(user.document);
+});
+router.post('/deposit/:user', async function (req, res, next) {
+    let user = await Mongo.Create('deposits',
+        Object.assign({name: req.params.user}, req.body)
+    )
+    res.json(user);
+});
+router.delete('/deposit/:id', async function (req, res, next) {
+    let user = await Mongo.Delete('deposits', req.params.id)
+    res.json(user);
 });
 
 module.exports = router;
