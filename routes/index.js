@@ -9,9 +9,19 @@ router.get('/', function (req, res, next) {
 router.get('/referentials', async function (req, res, next) {
     let amends = await Mongo.ReadAll('amendsType', null)
     let deposits = await Mongo.ReadAll('depositsType', null)
+    let refs = await Mongo.ReadAll('referentials', null)
+
+
+    let parameters = {}
+
+    refs.documents.forEach((param) => {
+        parameters[param.key] = param.value
+    })
+
     let referentials = {
         amends: amends.documents,
-        deposits: deposits.documents
+        deposits: deposits.documents,
+        parameters
     }
     res.json(referentials);
 });
