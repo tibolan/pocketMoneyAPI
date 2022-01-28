@@ -1,24 +1,21 @@
+require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const cors = require('cors')
-const schemaManager = require('./schema/schemaManager')
-
-global.__basedir = __dirname;
 
 /* MONGO */
-const DB_NAME = "PocketMoneyAPI_v2"
-const MONGO_DB = `mongodb+srv://tibolan:toubeau1177@cluster0.emkg2.mongodb.net/${DB_NAME}?authSource=admin&replicaSet=atlas-7aaq2k-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`
-schemaManager.startDB(MONGO_DB)
-
+const schemaManager = require('./schema/schemaManager')
+schemaManager.startDB(process.env.MONGO_DB_STRING)
+global.__basedir = __dirname;
 
 /* MODELS */
 const Amends = schemaManager.getSchema('Amends', 1)
 const Deposits = schemaManager.getSchema('Deposits', 1)
 const Users = schemaManager.getSchema('Users', 1)
-
 
 const indexRouter = require('./routes/index');
 
