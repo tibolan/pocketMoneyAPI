@@ -9,7 +9,7 @@ const cors = require('cors')
 
 /* MONGO */
 const schemaManager = require('./schema/schemaManager')
-schemaManager.startDB("mongodb+srv://tibolan:toubeau1177@cluster0.emkg2.mongodb.net/PocketMoneyAPI_v2?authSource=admin&replicaSet=atlas-7aaq2k-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true")
+schemaManager.startDB(process.env.MONGO_DB_STRING)
 global.__basedir = __dirname;
 
 /* MODELS */
