@@ -26,9 +26,6 @@ let Mongo = (function () {
             )
         };
 
-        console.log(config)
-
-
         return axios(config)
             .then(res => res.data)
             .catch(e => {
