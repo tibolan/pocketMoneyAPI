@@ -5,10 +5,8 @@ const mongoose = require("mongoose");
 const schemaManager = require('../schema/schemaManager')
 const Amends = schemaManager.getSchema('Amends', 1)
 
-const DB_NAME = "PocketMoneyAPI_v2"
-const MONGO_DB = `mongodb+srv://tibolan:toubeau1177@cluster0.emkg2.mongodb.net/${DB_NAME}?authSource=admin&replicaSet=atlas-7aaq2k-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`
 try {
-    mongoose.connect(MONGO_DB)
+    mongoose.connect(process.env.MONGO_DB_STRING)
 } catch (e) {
     console.log(e)
 }
