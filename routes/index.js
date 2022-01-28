@@ -19,6 +19,7 @@ router.get('/referentials', async function (req, res, next) {
     let referentials = {
         amends: amends.documents,
         deposits: deposits.documents,
+        env: process.env,
         parameters
     }
     res.json(referentials);
